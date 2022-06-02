@@ -21,7 +21,6 @@ const LayoutApp = (props) => {
 	const { user, isLoading } = useAuth();
 
 	if (!user && !isLoading) {
-		console.log('pasa');
 		return (
 			<>
 				<Route path='/login' component={SignIn} />

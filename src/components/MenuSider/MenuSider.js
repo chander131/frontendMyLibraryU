@@ -29,12 +29,12 @@ const MenuSider = (props) => {
 			<Menu
 				theme='dark'
 				mode='inline'
-				defaultSelectedKeys={[role === 'LIBRARIAN_ROLE' ? '/home' : '/library']}
+				defaultSelectedKeys={[role === 'LIBRARIAN_ROLE' ? '/requested-books' : '/library']}
 				selectedKeys={[pathname]}
 			>
 				{role === 'LIBRARIAN_ROLE' ? (
 					<>
-						<Menu.Item key='/home'>
+						<Menu.Item key='/requested-books'>
 							<Link to={'/requested-books'}>
 								<HomeOutlined />
 								<span className='nav-text'>Requested books</span>

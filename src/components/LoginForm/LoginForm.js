@@ -32,7 +32,6 @@ export default function LoginForm(props) {
 		e.preventDefault();
 
 		const result = await signInApi(inputs);
-		console.log(result);
 		if(result.ReturnCode !== 200) {
 			notification.error({ message: result.ReturnMsg });
 		} else {

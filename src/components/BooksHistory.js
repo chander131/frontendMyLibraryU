@@ -55,63 +55,54 @@ const BooksHistory = ({ filter }) => {
 	}, [filter]);
 
 	return (
-		<StyledBookHistory>
-			<div className='book-history'>
-				{['librarian_earring', 'librarian'].includes(filter) && (
-					<p>Student</p>
-				)}
-				<p>Book</p>
-				<p>Date departureDate</p>
-				{['user_history', 'librarian'].includes(filter) && (
-					<p>Date deliverDate</p>
-				)}
-				{<p>Status</p>}
-				{<p>Request stock</p>}
-				{filter === 'librarian_earring' && (
-					<div>
-						<p>Options</p>
-					</div>
-				)}
-			</div>
-			{resAll?.ReturnData.map((history, i) => (
-				<div key={i} className='book-history'>
+		<table className='table'>
+			<thead className='thead-dark'>
+				<tr>
+					<th scope='col'>#</th>
 					{['librarian_earring', 'librarian'].includes(filter) && (
-						<p>{history.user.name}</p>
+						<th scope='col'>Student</th>
 					)}
-					<p>{history.book.title}</p>
-					<p>{moment.unix(history.departureDate).format('d/MM/yyyy')}</p>
+						
+					<th scope='col'>Book</th>
+					<th scope='col'>Date departureDate</th>
 					{['user_history', 'librarian'].includes(filter) && (
-						<p>{moment.unix(history.deliverDate).format('d/MM/yyyy')}</p>
+						<th scope='col'>Date deliverDate</th>
 					)}
-					{<p>{history.status.toLowerCase()}</p>}
-					{<p>{history.stock}</p>}
+					<th scope='col'>Status</th>
+					<th scope='col'>Request stock</th>
 					{filter === 'librarian_earring' && (
-						<div>
-							<button type='button' onClick={() => takeABook(history._id)}>Take a book</button>
-						</div>
+						<th scope='col'>Options</th>
 					)}
-				</div>
-			))}
-		</StyledBookHistory>
-	)
-}
+				</tr>
+			</thead>
+			<tbody>
+				{resAll?.ReturnData.map((history, i) => (
+					<tr key={i}>
+						<th scope='row'>{i + 1}</th>
+						{['librarian_earring', 'librarian'].includes(filter) && (
+							<td>{history.user.name}</td>
+						)}
+						<td>{history.book.title}</td>
+						<td>{moment.unix(history.departureDate).format('d/MM/yyyy')}</td>
+						{['user_history', 'librarian'].includes(filter) && (
+							<td>{moment.unix(history.deliverDate).format('d/MM/yyyy')}</td>
+						)}
+						{<td>{history.status.toLowerCase()}</td>}
+						{<td>{history.stock}</td>}
+						{filter === 'librarian_earring' && (
+							<td>
+								<button
+									type='button'
+									onClick={() => takeABook(history._id)}
+									className='btn btn-outline-info btn-sm'
+								>Take a book</button>
+							</td>
+						)}
+					</tr>
+				))}
+			</tbody>
+		</table>
+	);
+};
 
-const StyledBookHistory = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  .book-history {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-
-    & > :nth-child(1n + 1) {
-      flex: 1;
-    }
-  }
-`;
-
-export default BooksHistory
+export default BooksHistory;

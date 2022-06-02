@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import useAuth from '@root/hooks/useAuth';
 import useDataApi from '@root/hooks/useDataApi';
 import { apiVersion, basePath } from '@root/api/config';
-import styled from 'styled-components';
 
 const initialState = {
 	name: '',
@@ -77,7 +76,7 @@ const Users = () => {
 	}, []);
 
 	return (
-		<StyledUser>
+		<div>
 			<div>
 				<FormUser
 					data={user}
@@ -88,25 +87,47 @@ const Users = () => {
 				/>
 			</div>
 
+			<table className='table'>
+				<thead className='thead-dark'>
+					<tr>
+						<th scope='col'>#</th>
+						<th scope='col'>Name</th>
+						<th scope='col'>Email</th>
+						<th scope='col'>Role</th>
+						<th scope='col'>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					{resAll?.ReturnData?.users?.map((dataUser, i) => (
+						<tr key={i}>
+							<th scope='row'>{i + 1}</th>
+							<td>{dataUser.name}</td>
+							<td>{dataUser.email}</td>
+							<td>{dataUser.role}</td>
+							<td>
+								<button
+									type='button'
+									onClick={() => editar(dataUser)}
+									className='btn btn-outline-info btn-sm'
+								>Editar
+								</button>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+
 			<div className='container-books'>
-				{resAll?.ReturnData?.users?.map((dataUser, i) => (
-					<div key={i}>
-						<p><span>Name:</span> {dataUser.name}</p>
-						<p><span>Email:</span> {dataUser.email}</p>
-						<p><span>Role:</span> {dataUser.role}</p>
-						<button type='button' onClick={() => editar(dataUser)}>Editar</button>
-					</div>
-				))}
 			</div>
-		</StyledUser>
+		</div>
 	);
 };
 
 const FormUser = ({ data = {}, setData, onAction, typeAction = 'save', onCancel }) => {
 
 	return (
-		<div className='book'>
-			<div>
+		<div className='form-row'>
+			<div className='form-group col-md-2'>
 				<label htmlFor='name'>Name</label>
 				<input
 					id='name'
@@ -114,9 +135,10 @@ const FormUser = ({ data = {}, setData, onAction, typeAction = 'save', onCancel 
 					name='name'
 					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					value={data.name}
+					className='form-control form-control-sm'
 				/>
 			</div>
-			<div>
+			<div className='form-group col-md-2'>
 				<label htmlFor='lastname'>Lastname</label>
 				<input
 					id='lastname'
@@ -124,9 +146,10 @@ const FormUser = ({ data = {}, setData, onAction, typeAction = 'save', onCancel 
 					name='lastname'
 					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					value={data.lastname}
+					className='form-control form-control-sm'
 				/>
 			</div>
-			<div>
+			<div className='form-group col-md-2'>
 				<label htmlFor='email'>Email</label>
 				<input
 					id='email'
@@ -134,9 +157,10 @@ const FormUser = ({ data = {}, setData, onAction, typeAction = 'save', onCancel 
 					name='email'
 					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					value={data.email}
+					className='form-control form-control-sm'
 				/>
 			</div>
-			<div>
+			<div className='form-group col-md-2'>
 				<label htmlFor='password'>Password</label>
 				<input
 					id='password'
@@ -144,87 +168,48 @@ const FormUser = ({ data = {}, setData, onAction, typeAction = 'save', onCancel 
 					name='password'
 					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					value={data.password}
+					className='form-control form-control-sm'
 				/>
 			</div>
-			<div>
+			<div className='form-group col-md-2'>
 				<label htmlFor='role'>Role</label>
 				<select
 					id='role'
 					name='role'
 					value={data.role}
 					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
+					className='form-control form-control-sm'
 				>
 					<option value='STUDENT_ROLE'>Student</option>
 					<option value='LIBRARIAN_ROLE'>Librarian</option>
 				</select>
 			</div>
-			<div>
-				<label htmlFor='active'>Active</label>
+			<div className='form-group form-check align-self-end ml-4'>
 				<input
 					id='active'
 					type='checkbox'
 					name='active'
 					onChange={({ target }) => setData({ ...data, [target.name]: target.checked })}
 					checked={data.active}
+					className='form-check-input'
 				/>
+				<label htmlFor='active' className='form-check-label'>
+					Active
+				</label>
 			</div>
-			<div>
-				<button type='button' onClick={onAction}>
+
+			<div className='form-group col-md-2 align-self-end'>
+				<button className='btn btn-outline-info btn-sm' type='button' onClick={onAction}>
 					{typeAction === 'save' ? 'Save' : 'Update'}
 				</button>
 
 				{typeAction !== 'save' && (
-					<button type='button' onClick={onCancel}>Cancelar</button>
+					<button className='btn btn-outline-secondary btn-sm ml-2' type='button' onClick={onCancel}
+					>Cancelar</button>
 				)}
 			</div>
 		</div>
 	);
 };
-
-const StyledUser = styled.div`
-
-  .book {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-
-    & > div {
-      flex: 1;
-      & > label {
-        
-      }
-
-      & > input {
-
-      }
-    }
-
-    & > div {
-      & > button {
-        width: 70px;
-      }
-    }
-  }
-
-  .container-books {
-    display: flex;
-    flex-direction: column;
-
-    & > div {
-      display: flex;
-      & > :nth-child(1n + 1) {
-        margin-right: 10px;
-      }
-
-      p > span {
-        color: black;
-        font-weight: 500;
-      }
-    }
-  }
-
-`;
-
 
 export default Users

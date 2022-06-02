@@ -120,10 +120,12 @@ const Library = () => {
 					</div>
 
 					<div className='form-group col-md-3 align-self-end'>
-						<button type='button' className='btn btn-outline-info' onClick={searchBooks}>Search</button>
+						<button type='button' className='btn btn-outline-info btn-sm' onClick={searchBooks}
+						>Search</button>
 						<button
 							type='button'
-							className='btn btn-outline-secondary ml-2' onClick={cleanFilters}>Clean filters</button>
+							className='btn btn-outline-secondary ml-2 btn-sm' onClick={cleanFilters}
+						>Clean filters</button>
 					</div>
 				</div>
 			</div>

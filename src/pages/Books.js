@@ -87,16 +87,41 @@ const Books = () => {
 				/>
 			</div>
 
-			<div className='container-books'>
-				{resAll?.ReturnData.map((book, i) => (
-					<div key={i}>
-						<p><span>Title:</span> {book.title}</p>
-						<p><span>Author:</span> {book.author}</p>
-						<p><span>Gender:</span> {book.gender}</p>
-						<button type='button' onClick={() => editar(book)}>Editar</button>
-					</div>
-				))}
-			</div>
+			<table className='table'>
+				<thead className='thead-dark'>
+					<tr>
+						<th scope='col'>#</th>
+						<th scope='col'>Title</th>
+						<th scope='col'>Author</th>
+						<th scope='col'>Published year</th>
+						<th scope='col'>Gender</th>
+						<th scope='col'>Stock</th>
+						<th scope='col'>Actions</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{resAll?.ReturnData.map((book, i) => (
+						<tr key={i}>
+							<td>{i + 1}</td>
+							<td>{book.title}</td>
+							<td>{book.author}</td>
+							<td>{book.publishedYear}</td>
+							<td>{book.gender}</td>
+							<td>{book.stock}</td>
+							<td>
+								<button
+									type='button'
+									className='btn btn-outline-info btn-sm'
+									onClick={() => editar(book)}
+								>
+									Editar
+								</button>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
 		</StyledBook>
 	);
 };
@@ -104,8 +129,8 @@ const Books = () => {
 const FormBook = ({ data = {}, setData, onAction, typeAction = 'save', onCancel }) => {
 
 	return (
-		<div className='book'>
-			<div>
+		<div className='form-row'>
+			<div className='form-group col-md-2'>
 				<label htmlFor='title'>Title</label>
 				<input
 					id='title'
@@ -113,9 +138,10 @@ const FormBook = ({ data = {}, setData, onAction, typeAction = 'save', onCancel 
 					name='title'
 					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					value={data.title}
+					className='form-control form-control-sm'
 				/>
 			</div>
-			<div>
+			<div className='form-group col-md-2'>
 				<label htmlFor='author'>Author</label>
 				<input
 					id='author'
@@ -123,9 +149,10 @@ const FormBook = ({ data = {}, setData, onAction, typeAction = 'save', onCancel 
 					name='author'
 					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					value={data.author}
+					className='form-control form-control-sm'
 				/>
 			</div>
-			<div>
+			<div className='form-group col-md-2'>
 				<label htmlFor='publishedYear'>Published year</label>
 				<input
 					id='publishedYear'
@@ -133,9 +160,10 @@ const FormBook = ({ data = {}, setData, onAction, typeAction = 'save', onCancel 
 					name='publishedYear'
 					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					value={data.publishedYear}
+					className='form-control form-control-sm'
 				/>
 			</div>
-			<div>
+			<div className='form-group col-md-2'>
 				<label htmlFor='gender'>Gender</label>
 				<input
 					id='gender'
@@ -143,9 +171,10 @@ const FormBook = ({ data = {}, setData, onAction, typeAction = 'save', onCancel 
 					name='gender'
 					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					value={data.gender}
+					className='form-control form-control-sm'
 				/>
 			</div>
-			<div>
+			<div className='form-group col-md-2'>
 				<label htmlFor='stock'>Stock</label>
 				<input
 					id='stock'
@@ -153,15 +182,18 @@ const FormBook = ({ data = {}, setData, onAction, typeAction = 'save', onCancel 
 					name='stock'
 					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					value={data.stock}
+					className='form-control form-control-sm'
 				/>
 			</div>
-			<div>
-				<button type='button' onClick={onAction}>
+			<div className='form-group col-md-2 align-self-end'>
+				<button type='button' onClick={onAction} className='btn btn-outline-info btn-sm'>
 					{typeAction === 'save' ? 'Save' : 'Update'}
 				</button>
 
 				{typeAction !== 'save' && (
-					<button type='button' onClick={onCancel}>Cancelar</button>
+					<button type='button' onClick={onCancel} className='btn btn-outline-secondary btn-sm ml-2'>
+						Cancelar
+					</button>
 				)}
 			</div>
 		</div>

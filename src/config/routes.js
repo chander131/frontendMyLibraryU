@@ -1,6 +1,5 @@
 /* eslint-disable no-tabs */
 // Layout
-// Layout
 import Layout from '@root/layouts/Layout';
 
 // Admin Pages
