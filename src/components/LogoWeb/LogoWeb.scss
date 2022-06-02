@@ -1,0 +1,58 @@
+@import '../../scss/index.scss';
+
+.logo-web-small {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	height: 60px;
+	max-width: 342px;
+
+	img {
+		width: 55px;
+		margin-right: 5px;
+	}
+
+	.box-creator-small {
+		-webkit-transition: 0.5s;
+		transition: 0.5s;
+		p {
+			font-size: 14px;
+			line-height: 16px;
+			font-weight: normal;
+			color: #fff;
+			margin: 0;
+
+			:hover {
+				color: #fff;
+			}
+		}
+	}
+}
+
+.logo-web-middle {
+	display: flex;
+	align-items: center;
+
+	img {
+		width: 80px;
+		margin-right: 5px;
+	}
+
+	.box-creator-middle {
+		p {
+			font-size: 28px;
+			line-height: 30px;
+			font-weight: bold;
+			color: #fff;
+			margin: 0;
+
+			:hover {
+				color: #fff;
+			}
+		}
+	}
+}
+
+.menu-top__left-logo {
+	padding: 0 10px;
+}

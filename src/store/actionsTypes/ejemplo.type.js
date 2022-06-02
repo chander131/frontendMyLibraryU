@@ -1,0 +1,3 @@
+export const SET_EJEMPLO = 'SET_EJEMPLO';
+export const SET_INIT_EJEMPLO = 'SET_INIT_EJEMPLO';
+export const SET_EJEMPLO_ERROR = 'SET_EJEMPLO_ERROR';

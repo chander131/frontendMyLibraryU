@@ -1,0 +1,20 @@
+module.exports = {
+	'@root': './src',
+	'@components': './src/components',
+	'@config': './src/config/',
+	'@contexts': './src/contexts',
+	'@db': './src/db',
+	'@helpers': './src/helpers',
+	'@hooks': './src/hooks',
+	'@img': './src/img',
+	'@layouts': './src/layouts',
+	'@libs': './src/libs',
+	'@pages': './src/pages',
+	'@actionsTypes': './src/store/actionsTypes',
+	'@actions': './src/store/actions',
+	'@reducers': './src/store/reducers',
+	'@providers': './src/providers',
+	'@scss': './src/scss',
+	'@api': './src/api',
+	'@utils': './src/utils'
+};

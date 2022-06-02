@@ -1,0 +1,22 @@
+@import './scss/index.scss';
+
+body {
+  margin: 0;
+  font-family: 'Barlow', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.success {
+  border: 1px solid $success;
+  background-color: $background-success;
+}
+
+.error {
+  border: 1px solid $error;
+  background-color: $background-error;
+}
