@@ -1,12 +1,19 @@
-# Plantilla de React
+# My U-Library
 
-Proyecto de react con configuraciones bases:
+Functions
 
 ```
--React router dom
--React redux
--Alias path
--Cache context
+-Librarian
+  -Creation of new users
+  -Creation of book genres
+  -Creation of books
+  -Ordered books view
+  -Book history
+-Student
+  -Library
+  -Ordered books view
+  -Book history
+
 ```
 
 ## Comandos disponibles
@@ -24,4 +31,4 @@ Para ejecutar las pruebas unitarias
 
 ### `yarn build` o `npm run build`
 
-Para construir el empaquetado de produccion
+Para construir el empaquetado de producción
