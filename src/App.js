@@ -1,6 +1,6 @@
 import React from 'react';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; // Dev
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'; // Prod
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; // Dev
+// import { HashRouter as Router, Route, Switch } from 'react-router-dom'; // Prod
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
 

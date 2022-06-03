@@ -6,16 +6,19 @@ import RegisterForm from '@components/RegisterForm';
 import LoginForm from '@components/LoginForm';
 import LogoWeb from '@components/LogoWeb';
 
+import useAuth from '@root/hooks/useAuth';
+
 import { getAccessTokenApi } from '@api/auth';
 
 import './SignIn.scss';
 
 const SignIn = () => {
+	const { user } = useAuth();
 	const { Content } = Layout;
 	const { TabPane } = Tabs;
 
 	if (getAccessTokenApi()) {
-		return <Redirect to='/home' />;
+		return <Redirect to={user?.role ? '/library' : '/requested-books'} />;
 	}
 
 	return (

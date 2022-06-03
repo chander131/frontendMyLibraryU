@@ -127,6 +127,20 @@ const Books = () => {
 };
 
 const FormBook = ({ data = {}, setData, onAction, typeAction = 'save', onCancel }) => {
+	const { user: { token } } = useAuth();
+	const [{ data: genders }, getGendersApi] = useDataApi({
+		url: `${basePath}/${apiVersion}/genderBook`, headers: {
+			Authorization: token
+		}
+	});
+
+	const getGenders = async () => {
+		await getGendersApi();
+	};
+
+	useEffect(() => {
+		getGenders();
+	}, []);
 
 	return (
 		<div className='form-row'>
@@ -165,14 +179,19 @@ const FormBook = ({ data = {}, setData, onAction, typeAction = 'save', onCancel 
 			</div>
 			<div className='form-group col-md-2'>
 				<label htmlFor='gender'>Gender</label>
-				<input
+				<select
 					id='gender'
-					type='text'
 					name='gender'
-					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					value={data.gender}
+					onChange={({ target }) => setData({ ...data, [target.name]: target.value })}
 					className='form-control form-control-sm'
-				/>
+					required
+				>
+					<option value='' selected disabled hidden>Choose here</option>
+					{genders?.ReturnData.map(({ gender }, i) => (
+						<option key={i} value={gender}>{gender}</option>
+					))}
+				</select>
 			</div>
 			<div className='form-group col-md-2'>
 				<label htmlFor='stock'>Stock</label>

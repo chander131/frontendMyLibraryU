@@ -28,6 +28,11 @@ const routes = [
 				component: RequestedBooks,
 			},
 			{
+				path: '/',
+				exact: true,
+				component: RequestedBooks,
+			},
+			{
 				path: '/login',
 				exact: true,
 				component: SignIn,

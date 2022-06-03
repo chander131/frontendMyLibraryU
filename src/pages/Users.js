@@ -10,7 +10,7 @@ const initialState = {
 	lastname: '',
 	email: '',
 	password: '',
-	role: '',
+	role: 'STUDENT_ROLE',
 	active: false,
 };
 
